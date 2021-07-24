@@ -17,6 +17,9 @@ public class Board {
         firstPlayerPieceInit();
         secondPlayerPieceInit();
 
+        //firstPlayerOnlyPawnInit();
+        //secondPlayerOnlyPawnInit();
+
     }
 
     private void fillWithNulls()
@@ -28,6 +31,28 @@ public class Board {
                 this.gameBoard[i][j] = null;
             }
         }
+    }
+
+    private void firstPlayerOnlyPawnInit()
+    {
+        Pawn newPawn = new Pawn(new Pair(6, 4), PlayerSpecifier.FIRST);
+        this.gameBoard[6][4] = newPawn;
+        this.firstPlayerPieces.add(newPawn);
+
+        King player1King = new King(new Pair(7, 4), PlayerSpecifier.FIRST);
+        this.gameBoard[7][4] = player1King;
+        this.firstPlayerPieces.add(player1King);
+    }
+
+    private void secondPlayerOnlyPawnInit()
+    {
+        Pawn newPawn = new Pawn(new Pair(1, 3), PlayerSpecifier.SECOND);
+        this.gameBoard[1][3] = newPawn;
+        this.secondPlayerPieces.add(newPawn);
+
+        King player2King = new King(new Pair(0, 4), PlayerSpecifier.SECOND);
+        this.gameBoard[0][4] = player2King;
+        this.secondPlayerPieces.add(player2King);
     }
 
     private void secondPlayerPieceInit()

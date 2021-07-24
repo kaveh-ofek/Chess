@@ -27,11 +27,14 @@ public abstract class Piece {
         }
         return isPieceMoved;
     }
-    public void tempMovePiece(Pair newLocation, Board gameBoard, PlayerSpecifier playerNumber)
+    public Piece tempMovePiece(Pair newLocation, Board gameBoard, PlayerSpecifier playerNumber)
     {
+        Piece newLocationPiece = gameBoard.getPieceFromLocation(newLocation);
         gameBoard.putNull(this.currentLocation);
         gameBoard.putPiece(newLocation, this, playerNumber);
         this.currentLocation = newLocation;
+
+        return newLocationPiece;
     }
     public Pair getCurrentLocation()
     {

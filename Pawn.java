@@ -121,38 +121,35 @@ public class Pawn extends Piece{
                 break;
             }
         }
-        if (playerNumber == PlayerSpecifier.FIRST)
+        Pair pawnLocation = this.currentLocation;
+        if (this.currentLocation.getLeft() == 0 || this.currentLocation.getLeft() == 7)
         {
-            Pair pawnLocation = this.currentLocation;
-            if (this.currentLocation.getLeft() == 0 || this.currentLocation.getLeft() == 7)
+            char newPiece = 'O';
+            while (newPiece == 'O')
             {
-                char newPiece = 'O';
-                while (newPiece == 'O')
-                {
-                    System.out.println("Choose new Piece: R-Rook, K-Knight, B-Bishop, Q-Queen");
-                    Scanner newPieceScanner = new Scanner(System.in);
-                    newPiece = newPieceScanner.next().charAt(0);
-                }
-                if (newPiece == 'R')
-                {
-                    gameBoard.removeOldPiece(pawnLocation, this, playerNumber);
-                    gameBoard.addNewPiece(pawnLocation, new Rook(pawnLocation, playerNumber), playerNumber);
-                }
-                if (newPiece == 'K')
-                {
-                    gameBoard.removeOldPiece(pawnLocation, this, playerNumber);
-                    gameBoard.addNewPiece(pawnLocation, new Knight(pawnLocation, playerNumber), playerNumber);
-                }
-                if (newPiece == 'B')
-                {
-                    gameBoard.removeOldPiece(pawnLocation, this, playerNumber);
-                    gameBoard.addNewPiece(pawnLocation, new Bishop(pawnLocation, playerNumber), playerNumber);
-                }
-                if (newPiece == 'Q')
-                {
-                    gameBoard.removeOldPiece(pawnLocation, this, playerNumber);
-                    gameBoard.addNewPiece(pawnLocation, new Queen(pawnLocation, playerNumber), playerNumber);
-                }
+                System.out.println("Choose new Piece: R-Rook, K-Knight, B-Bishop, Q-Queen");
+                Scanner newPieceScanner = new Scanner(System.in);
+                newPiece = newPieceScanner.next().charAt(0);
+            }
+            if (newPiece == 'R')
+            {
+                gameBoard.removeOldPiece(pawnLocation, this, playerNumber);
+                gameBoard.addNewPiece(pawnLocation, new Rook(pawnLocation, playerNumber), playerNumber);
+            }
+            if (newPiece == 'K')
+            {
+                gameBoard.removeOldPiece(pawnLocation, this, playerNumber);
+                gameBoard.addNewPiece(pawnLocation, new Knight(pawnLocation, playerNumber), playerNumber);
+            }
+            if (newPiece == 'B')
+            {
+                gameBoard.removeOldPiece(pawnLocation, this, playerNumber);
+                gameBoard.addNewPiece(pawnLocation, new Bishop(pawnLocation, playerNumber), playerNumber);
+            }
+            if (newPiece == 'Q')
+            {
+                gameBoard.removeOldPiece(pawnLocation, this, playerNumber);
+                gameBoard.addNewPiece(pawnLocation, new Queen(pawnLocation, playerNumber), playerNumber);
             }
         }
         return isPieceMoved;

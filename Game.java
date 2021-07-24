@@ -28,7 +28,7 @@ public class Game {
                     Pair pieceLastLocation = playingPiece.getCurrentLocation();
                     for(Pair curPossibleMove : curPiecePossibleMoves)
                     {
-                        playingPiece.tempMovePiece(curPossibleMove, this.gameBoard, nowPlayingPlayerNumber);
+                        Piece newLocationPiece = playingPiece.tempMovePiece(curPossibleMove, this.gameBoard, nowPlayingPlayerNumber);
                         if (gameBoard.isCheck(nowPlayingPlayerNumber))
                         {
                             playingPiece.tempMovePiece(pieceLastLocation, this.gameBoard, nowPlayingPlayerNumber);
@@ -38,6 +38,17 @@ public class Game {
                             possibleMovesInCheck = possibleMovesInCheck + 1;
                             playingPiece.tempMovePiece(pieceLastLocation, this.gameBoard, nowPlayingPlayerNumber);
                         }
+                        if (newLocationPiece != null)
+                        {
+                            if (nowPlayingPlayerNumber == PlayerSpecifier.FIRST)
+                            {
+                                newLocationPiece.tempMovePiece(curPossibleMove, this.gameBoard, PlayerSpecifier.SECOND);
+                            }
+                            else
+                            {
+                                newLocationPiece.tempMovePiece(curPossibleMove, this.gameBoard, PlayerSpecifier.FIRST);
+                            }
+                        }
                     }
                 }
                 if (possibleMovesInCheck == 0)
@@ -45,6 +56,20 @@ public class Game {
                     System.out.println("Its CheckMate!");
                     break;
                 }
+            }
+            boolean isTherePossibleMove = false;
+            for (Piece curPiece : currentPiecesArrayList)
+            {
+                int amountOfPossibleMoves = curPiece.possiblePieceMoves(this.gameBoard).size();
+                if (amountOfPossibleMoves != 0)
+                {
+                    isTherePossibleMove = true;
+                }
+            }
+            if (!isTherePossibleMove)
+            {
+                System.out.println("Its a Draw!");
+                break;
             }
             Scanner locationScanner = new Scanner(System.in);
             boolean validChoose = false;
