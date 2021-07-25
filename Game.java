@@ -2,15 +2,26 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+/**
+ * Main object for game
+ */
 public class Game {
 
     Board gameBoard;
 
+    /**
+     * Constructor for the game object, initiating new board with the correct pieces
+     */
     public Game()
     {
         this.gameBoard = new Board();
     }
 
+    /**
+     * The method will check if the first player is having only a knight and a king and return true, otherwise
+     * return false
+     * @return boolean value of the condition
+     */
     private boolean knightPlusKingInFirst()
     {
         ArrayList<Piece> firstPlayerPieces = this.gameBoard.getPlayerPieces(PlayerSpecifier.FIRST);
@@ -34,6 +45,11 @@ public class Game {
         return false;
     }
 
+    /**
+     * The method will check if the second player is having only a knight and a king and return true, otherwise
+     * return false
+     * @return boolean value of the condition
+     */
     private boolean knightPlusKingInSecond()
     {
         ArrayList<Piece> secondPlayerPieces = this.gameBoard.getPlayerPieces(PlayerSpecifier.SECOND);
@@ -57,6 +73,11 @@ public class Game {
         return false;
     }
 
+    /**
+     * The method will check if the first player is having only a bishop and a king and return true, otherwise
+     * return false
+     * @return boolean value of the condition
+     */
     private boolean bishopPlusKingInFirst()
     {
         ArrayList<Piece> firstPlayerPieces = this.gameBoard.getPlayerPieces(PlayerSpecifier.FIRST);
@@ -80,6 +101,11 @@ public class Game {
         return false;
     }
 
+    /**
+     * The method will check if the second player is having only a bishop and a king and return true, otherwise
+     * return false
+     * @return boolean value of the condition
+     */
     private boolean bishopPlusKingInSecond()
     {
         ArrayList<Piece> secondPlayerPieces = this.gameBoard.getPlayerPieces(PlayerSpecifier.SECOND);
@@ -103,6 +129,11 @@ public class Game {
         return false;
     }
 
+    /**
+     * The method will check if the first player is having only a king and return true, otherwise
+     * return false
+     * @return boolean value of the condition
+     */
     private boolean onlyKingInFirst()
     {
         ArrayList<Piece> firstPlayerPieces = this.gameBoard.getPlayerPieces(PlayerSpecifier.FIRST);
@@ -121,6 +152,11 @@ public class Game {
         return false;
     }
 
+    /**
+     * The method will check if the second player is having only a king and return true, otherwise
+     * return false
+     * @return boolean value of the condition
+     */
     private boolean onlyKingInSecond()
     {
         ArrayList<Piece> secondPlayerPieces = this.gameBoard.getPlayerPieces(PlayerSpecifier.SECOND);
@@ -139,6 +175,9 @@ public class Game {
         return false;
     }
 
+    /**
+     * Main gameplay function
+     */
     public void gameRun()
     {
         PlayerSpecifier nowPlayingPlayerNumber = PlayerSpecifier.FIRST;

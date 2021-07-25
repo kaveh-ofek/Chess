@@ -1,10 +1,17 @@
 import java.util.*;
+
+/**
+ * The board class will contain the current state of pieces in the board
+ */
 public class Board {
     private final Piece[][] gameBoard;
     private final ArrayList<Piece> firstPlayerPieces;
     private final ArrayList<Piece> secondPlayerPieces;
     public static int counter;
 
+    /**
+     * Simple constructor for a board initiated with pieces
+     */
     public Board()
     {
         this.gameBoard = new Piece[8][8];
@@ -22,6 +29,9 @@ public class Board {
 
     }
 
+    /**
+     * The method will put nulls in the board as an empty place sign
+     */
     private void fillWithNulls()
     {
         for (int i = 0; i < 8; i++)
@@ -33,6 +43,9 @@ public class Board {
         }
     }
 
+    /**
+     * used for debug - initiate the board with a single pawn and a king for first player
+     */
     private void firstPlayerOnlyPawnInit()
     {
         Pawn newPawn = new Pawn(new Pair(6, 4), PlayerSpecifier.FIRST);
@@ -44,6 +57,9 @@ public class Board {
         this.firstPlayerPieces.add(player1King);
     }
 
+    /**
+     * used for debug - initiate the board with a single pawn and a king for first player
+     */
     private void secondPlayerOnlyPawnInit()
     {
         Pawn newPawn = new Pawn(new Pair(1, 3), PlayerSpecifier.SECOND);
@@ -55,6 +71,9 @@ public class Board {
         this.secondPlayerPieces.add(player2King);
     }
 
+    /**
+     * The method will initiate the starting position for the black pieces
+     */
     private void secondPlayerPieceInit()
     {
         for(int i = 0; i < 8; i++)
@@ -94,6 +113,9 @@ public class Board {
         this.secondPlayerPieces.add(player2Queen);
     }
 
+    /**
+     * The method will initiate the starting position for the white pieces
+     */
     private void firstPlayerPieceInit()
     {
         for(int i = 0; i < 8; i++)
@@ -133,6 +155,12 @@ public class Board {
         this.firstPlayerPieces.add(player1Queen);
     }
 
+    /**
+     * The method will return the piece exist in the given location, if theres no piece the method will return
+     * null
+     * @param givenLocation location of the piece to look for
+     * @return the located piece
+     */
     public Piece getPieceFromLocation(Pair givenLocation)
     {
         int leftCoordinate = givenLocation.getLeft();
@@ -145,6 +173,13 @@ public class Board {
             return null;
     }
 
+    /**
+     * The method will return the piece exist in the given location, if theres no piece the method will return
+     * null
+     * @param leftCoordinate x location of the piece to look for
+     * @param rightCoordinate y location of the piece to look for
+     * @return
+     */
     public Piece getPieceFromLocation(int leftCoordinate, int rightCoordinate)
     {
         if (leftCoordinate < 0 || leftCoordinate > 7 || rightCoordinate < 0 || rightCoordinate > 7)
@@ -159,6 +194,9 @@ public class Board {
             return null;
     }
 
+    /**
+     * used for debug - print the current state of the board
+     */
     public void printBoardWithObjects()
     {
         for (int i = 0; i < 8; i++)
@@ -173,6 +211,10 @@ public class Board {
         System.out.println("");
     }
 
+    /**
+     * the method will put null in the given location
+     * @param givenLocation x,y coordinates
+     */
     public void putNull(Pair givenLocation)
     {
         int leftCoordinate = givenLocation.getLeft();
@@ -180,6 +222,12 @@ public class Board {
         this.gameBoard[leftCoordinate][rightCoordinate] = null;
     }
 
+    /**
+     * The method will put a given piece at a given location
+     * @param givenLocation location to place
+     * @param givenPiece piece
+     * @param playerNumber white or black
+     */
     public void putPiece(Pair givenLocation, Piece givenPiece, PlayerSpecifier playerNumber)
     {
         int leftCoordinate = givenLocation.getLeft();
@@ -187,6 +235,11 @@ public class Board {
         this.gameBoard[leftCoordinate][rightCoordinate] = givenPiece;
     }
 
+    /**
+     * The method will remove a piece from the board
+     * @param givenPiece piece to remove
+     * @param playerNumber white or black
+     */
     public void removeFromPieceList(Piece givenPiece, PlayerSpecifier playerNumber)
     {
         if (playerNumber == PlayerSpecifier.FIRST)
@@ -199,6 +252,12 @@ public class Board {
         }
     }
 
+    /**
+     * The method will add a new piece to the board according to chosen player
+     * @param givenLocation location to place
+     * @param givenPiece piece
+     * @param playerNumber black or white
+     */
     public void addNewPiece(Pair givenLocation, Piece givenPiece, PlayerSpecifier playerNumber)
     {
         int leftCoordinate = givenLocation.getLeft();
@@ -214,6 +273,12 @@ public class Board {
         }
     }
 
+    /**
+     * The method will remove a piece from the board according to chosen player
+     * @param givenLocation location to remove
+     * @param oldPiece piece
+     * @param playerNumber black or white
+     */
     public void removeOldPiece(Pair givenLocation, Piece oldPiece, PlayerSpecifier playerNumber)
     {
         int leftCoordinate = givenLocation.getLeft();
@@ -229,6 +294,11 @@ public class Board {
         }
     }
 
+    /**
+     * The method will return the array list of pieces of given player
+     * @param playerNumber black or white
+     * @return array list contains all the pieces of the player
+     */
     public ArrayList<Piece> getPlayerPieces(PlayerSpecifier playerNumber)
     {
         if (playerNumber == PlayerSpecifier.FIRST)
@@ -241,6 +311,11 @@ public class Board {
         }
     }
 
+    /**
+     * The method will check if the given player is at "Check" state
+     * @param nowPlayingPlayerNumber black or white
+     * @return boolean value
+     */
     public boolean isCheck(PlayerSpecifier nowPlayingPlayerNumber)
     {
         Pair kingLocation = null;
