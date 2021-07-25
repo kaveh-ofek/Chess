@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Game {
@@ -9,6 +10,135 @@ public class Game {
     {
         this.gameBoard = new Board();
     }
+
+    private boolean knightPlusKingInFirst()
+    {
+        ArrayList<Piece> firstPlayerPieces = this.gameBoard.getPlayerPieces(PlayerSpecifier.FIRST);
+        if (firstPlayerPieces.size() == 2)
+        {
+            int countOfKnights = 0;
+            int countOfKing = 0;
+            for(Piece curPiece : firstPlayerPieces)
+            {
+                if (curPiece.getClass() == Knight.class)
+                {
+                    countOfKnights = countOfKnights + 1;
+                }
+                if (curPiece.getClass() == King.class)
+                {
+                    countOfKing = countOfKnights + 1;
+                }
+            }
+            return countOfKnights == 1 && countOfKing == 1;
+        }
+        return false;
+    }
+
+    private boolean knightPlusKingInSecond()
+    {
+        ArrayList<Piece> secondPlayerPieces = this.gameBoard.getPlayerPieces(PlayerSpecifier.SECOND);
+        if (secondPlayerPieces.size() == 2)
+        {
+            int countOfKnights = 0;
+            int countOfKing = 0;
+            for(Piece curPiece : secondPlayerPieces)
+            {
+                if (curPiece.getClass() == Knight.class)
+                {
+                    countOfKnights = countOfKnights + 1;
+                }
+                if (curPiece.getClass() == King.class)
+                {
+                    countOfKing = countOfKing + 1;
+                }
+            }
+            return countOfKnights == 1 && countOfKing == 1;
+        }
+        return false;
+    }
+
+    private boolean bishopPlusKingInFirst()
+    {
+        ArrayList<Piece> firstPlayerPieces = this.gameBoard.getPlayerPieces(PlayerSpecifier.FIRST);
+        if (firstPlayerPieces.size() == 2)
+        {
+            int countOfBishops = 0;
+            int countOfKing = 0;
+            for(Piece curPiece : firstPlayerPieces)
+            {
+                if (curPiece.getClass() == Bishop.class)
+                {
+                    countOfBishops = countOfBishops + 1;
+                }
+                if (curPiece.getClass() == King.class)
+                {
+                    countOfKing = countOfKing + 1;
+                }
+            }
+            return countOfBishops == 1 && countOfKing == 1;
+        }
+        return false;
+    }
+
+    private boolean bishopPlusKingInSecond()
+    {
+        ArrayList<Piece> secondPlayerPieces = this.gameBoard.getPlayerPieces(PlayerSpecifier.SECOND);
+        if (secondPlayerPieces.size() == 2)
+        {
+            int countOfBishops = 0;
+            int countOfKing = 0;
+            for(Piece curPiece : secondPlayerPieces)
+            {
+                if (curPiece.getClass() == Bishop.class)
+                {
+                    countOfBishops = countOfBishops + 1;
+                }
+                if (curPiece.getClass() == King.class)
+                {
+                    countOfKing = countOfKing + 1;
+                }
+            }
+            return countOfBishops == 1 && countOfKing == 1;
+        }
+        return false;
+    }
+
+    private boolean onlyKingInFirst()
+    {
+        ArrayList<Piece> firstPlayerPieces = this.gameBoard.getPlayerPieces(PlayerSpecifier.FIRST);
+        if (firstPlayerPieces.size() == 1)
+        {
+            int countOfKing = 0;
+            for(Piece curPiece : firstPlayerPieces)
+            {
+                if (curPiece.getClass() == King.class)
+                {
+                    countOfKing = countOfKing + 1;
+                }
+            }
+            return countOfKing == 1;
+        }
+        return false;
+    }
+
+    private boolean onlyKingInSecond()
+    {
+        ArrayList<Piece> secondPlayerPieces = this.gameBoard.getPlayerPieces(PlayerSpecifier.SECOND);
+        if (secondPlayerPieces.size() == 1)
+        {
+            int countOfKing = 0;
+            for(Piece curPiece : secondPlayerPieces)
+            {
+                if (curPiece.getClass() == King.class)
+                {
+                    countOfKing = countOfKing + 1;
+                }
+            }
+            return countOfKing == 1;
+        }
+        return false;
+    }
+
     public void gameRun()
     {
         PlayerSpecifier nowPlayingPlayerNumber = PlayerSpecifier.FIRST;
@@ -71,6 +201,20 @@ public class Game {
                 System.out.println("Its a Draw!");
                 break;
             }
+            boolean onlyBishopAndKingInFirst = this.bishopPlusKingInFirst();
+            boolean onlyBishopAndKingInSecond = this.bishopPlusKingInSecond();
+            boolean onlyKnightAndKingInFirst = this.knightPlusKingInFirst();
+            boolean onlyKnightAndKingInSecond = this.knightPlusKingInSecond();
+            boolean onlyKingExistInFirst = this.onlyKingInFirst();
+            boolean onlyKingExistInSecond = this.onlyKingInSecond();
+
+            if ((onlyBishopAndKingInFirst || onlyKnightAndKingInFirst || onlyKingExistInFirst) &&
+            (onlyBishopAndKingInSecond || onlyKnightAndKingInSecond || onlyKingExistInSecond))
+            {
+                System.out.println("Its a Draw!");
+                break;
+            }
+
             Scanner locationScanner = new Scanner(System.in);
             boolean validChoose = false;
             Piece chosenPiece = null;
