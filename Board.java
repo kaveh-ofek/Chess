@@ -226,7 +226,7 @@ public class Board {
      * The method will put a given piece at a given location
      * @param givenLocation location to place
      * @param givenPiece piece
-     * @param playerNumber white or black
+     * @param playerNumber enum which is the player's side
      */
     public void putPiece(Pair givenLocation, Piece givenPiece, PlayerSpecifier playerNumber)
     {
@@ -238,7 +238,7 @@ public class Board {
     /**
      * The method will remove a piece from the board
      * @param givenPiece piece to remove
-     * @param playerNumber white or black
+     * @param playerNumber enum which is the player's side
      */
     public void removeFromPieceList(Piece givenPiece, PlayerSpecifier playerNumber)
     {
@@ -256,7 +256,7 @@ public class Board {
      * The method will add a new piece to the board according to chosen player
      * @param givenLocation location to place
      * @param givenPiece piece
-     * @param playerNumber black or white
+     * @param playerNumber enum which is the player's side
      */
     public void addNewPiece(Pair givenLocation, Piece givenPiece, PlayerSpecifier playerNumber)
     {
@@ -277,7 +277,7 @@ public class Board {
      * The method will remove a piece from the board according to chosen player
      * @param givenLocation location to remove
      * @param oldPiece piece
-     * @param playerNumber black or white
+     * @param playerNumber enum which is the player's side
      */
     public void removeOldPiece(Pair givenLocation, Piece oldPiece, PlayerSpecifier playerNumber)
     {
@@ -296,7 +296,7 @@ public class Board {
 
     /**
      * The method will return the array list of pieces of given player
-     * @param playerNumber black or white
+     * @param playerNumber enum which is the player's side
      * @return array list contains all the pieces of the player
      */
     public ArrayList<Piece> getPlayerPieces(PlayerSpecifier playerNumber)
@@ -313,7 +313,7 @@ public class Board {
 
     /**
      * The method will check if the given player is at "Check" state
-     * @param nowPlayingPlayerNumber black or white
+     * @param nowPlayingPlayerNumber enum which is the player's side
      * @return boolean value
      */
     public boolean isCheck(PlayerSpecifier nowPlayingPlayerNumber)
