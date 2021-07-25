@@ -1,7 +1,15 @@
 import java.util.ArrayList;
 
+/**
+ * sub-class for the queen piece
+ */
 public class Queen extends Piece{
 
+    /**
+     * constructor for the queen object based on the location of the piece and the player's number
+     * @param locationToInsert tuple of x and y spots
+     * @param givenPlayerNumber enum which is the player's side
+     */
     public Queen(Pair locationToInsert, PlayerSpecifier givenPlayerNumber)
     {
         this.typeOfPiece = PieceType.QUEEN;
@@ -9,6 +17,12 @@ public class Queen extends Piece{
         this.playerNumber =givenPlayerNumber;
     }
 
+    /**
+     * override method which calculates the possible moves of the queen piece according to the current
+     * state of the game
+     * @param gameBoard board object which includes the game board set up
+     * @return array list of all the possible moves
+     */
     @Override
     public ArrayList<Pair> possiblePieceMoves(Board gameBoard)
     {

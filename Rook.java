@@ -1,7 +1,15 @@
 import java.util.ArrayList;
 
+/**
+ * sub-class for the rook piece
+ */
 public class Rook extends Piece{
 
+    /**
+     * constructor for the rook object based on the location of the piece and the player's number
+     * @param locationToInsert tuple of x and y spots
+     * @param givenPlayerNumber enum which is the player's side
+     */
     public Rook(Pair locationToInsert, PlayerSpecifier givenPlayerNumber)
     {
         this.typeOfPiece = PieceType.ROOK;
@@ -9,6 +17,12 @@ public class Rook extends Piece{
         this.playerNumber = givenPlayerNumber;
     }
 
+    /**
+     * override method which calculates the possible moves of the rook piece according to the current
+     * state of the game
+     * @param gameBoard board object which includes the game board set up
+     * @return array list of all the possible moves
+     */
     @Override
     public ArrayList<Pair> possiblePieceMoves(Board gameBoard)
     {

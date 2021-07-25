@@ -1,8 +1,16 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * sub-class for the pawn piece
+ */
 public class Pawn extends Piece{
 
+    /**
+     * constructor for the pawn object based on the location of the piece and the player's number
+     * @param locationToInsert tuple of x and y spots
+     * @param givenPlayerNumber enum which is the player's side
+     */
     public Pawn(Pair locationToInsert, PlayerSpecifier givenPlayerNumber)
     {
         this.typeOfPiece = PieceType.PAWN;
@@ -10,6 +18,12 @@ public class Pawn extends Piece{
         this.playerNumber = givenPlayerNumber;
     }
 
+    /**
+     * override method which calculates the possible moves of the pawn piece according to the current
+     * state of the game
+     * @param gameBoard board object which includes the game board set up
+     * @return array list of all the possible moves
+     */
     @Override
     public ArrayList<Pair> possiblePieceMoves(Board gameBoard)
     {
@@ -103,6 +117,13 @@ public class Pawn extends Piece{
         return listOfAllPossibleMoves;
     }
 
+    /**
+     * override method that implements the movement mechanics of the pawn piece
+     * @param newLocation location to move
+     * @param gameBoard board object which includes the game board set up
+     * @param playerNumber enum which is the player's side
+     * @return true if the piece moved successfully, false otherwise
+     */
     @Override
     public boolean movePiece(Pair newLocation, Board gameBoard, PlayerSpecifier playerNumber)
     {
